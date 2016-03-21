@@ -1,0 +1,96 @@
+<%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
+<%@page import = "com.travelsky.entity.Student" %>
+<%
+String path = request.getContextPath();
+String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+%>
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+  <head>
+    <base href="<%=basePath%>">
+    
+    <title>学生信息</title>
+    
+	<meta http-equiv="pragma" content="no-cache">
+	<meta http-equiv="cache-control" content="no-cache">
+	<meta http-equiv="expires" content="0">    
+	<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
+	<meta http-equiv="description" content="This is my page">
+	<style type="text/css">
+		.info{
+		    
+			width : 150px;	
+			height : 50px;
+		}
+		
+			
+		
+	</style>
+
+  </head>
+  
+  
+  
+  <body>
+  <%
+			String message=(String)request.getAttribute("message");
+			if( message != null && !"".equals(message)){
+				%>
+				<script language="javascript">
+					alert("<%= message%>");
+				</script>
+				<%
+			}
+		%>	
+		<div id="crossband">
+  			<div></div>
+  			<ul id="ul">
+  				<li>
+  					<a href="projectDelay!inAddNewDelay.action">
+  						<span style="background-image: url('images/base/add_new.gif');"></span>
+  							新增
+  					</a>
+  				</li>
+  			</ul>
+  	   </div>
+  	   
+  	   <div id="nav">
+  	   		<span id="navSpan">
+  	   			信息管理<span> > </span><span><a href="<%= basePath %>">学生信息</a></span>
+  	   		</span>
+  	   </div>
+  	<table >		
+  		<tr  align = "center" height = "22px" onMouseMove = "javascript:this.bgColor='#E8EFF5'" onMouseOut = 
+  		"javascript:this.bgColor='#FFFFFF'">
+  			<td>学生学号</td>
+  			<td>学生名字</td>
+  			<td>学生课程</td>
+  			<td>学生成绩</td>
+  			<td>操作</td>
+  		</tr>
+ 		<% 		
+			List<Student> students=(List <Student>)request.getAttribute("students");
+			if( students != null && !"".equals(students)){
+				for(Student stu : students)
+				{
+				%>
+					<tr align = "center" onMouseMove = "javascript:this.bgColor='#E8EFF5'" onMouseOut = 
+  		"javascript:this.bgColor='#CCCC99'">
+  						<td class="info" ><%= stu.getId() %></td>
+  						<td class="info"><%= stu.getName() %></td>
+  						<td class="info"><%= stu.getCourse() %></td>
+  						<td class="info"><%= stu.getScore() %></td>
+  						<td class="info"> <a href = "<%=basePath%>Student/modify.asp?id =<%= stu.getId() %>">修改</a>  | 
+  								 <a href = "<%=basePath%>Student/modify.asp?id =<%= stu.getId() %>">删除</a>
+  						 </td>
+  					</tr>
+				
+				
+				<% 
+				}
+			}		
+			%> 
+ </table>  
+  </body>
+</html>

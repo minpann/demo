@@ -1,0 +1,46 @@
+10
+
+dir
+8
+http://www.svnchina.com/svn/bluesky/IbatisDemo/src/com/travelsky
+http://www.svnchina.com/svn/bluesky
+
+
+
+2014-08-13T09:15:16.774246Z
+8
+ysblue
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+674e6680-9ab7-420f-aa54-c8bf5592afd8
+
+test
+dir
+
+Utils
+dir
+
+service
+dir
+
+dao
+dir
+
+entity
+dir
+
+web
+dir
+

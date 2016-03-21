@@ -1,0 +1,48 @@
+package com.travelsky.web;
+
+
+
+import java.util.List;
+
+import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
+
+import com.travelsky.dao.StudentDao;
+import com.travelsky.entity.Student;
+
+@Controller
+@RequestMapping("/Student")
+public class StudentController  {
+
+
+	@Resource
+    private StudentDao studentDao;
+		
+
+	@RequestMapping("/getAll")
+	public ModelAndView findAll(HttpServletRequest req)
+	{
+		ModelAndView mav = new ModelAndView();		
+		 try {
+			 List<Student> students = studentDao.findAll();
+			mav.addObject("students", studentDao.findAll());
+		} catch (Exception e) {
+			e.printStackTrace();
+			mav.addObject("message", "数据库连接错误!");
+		}
+		 mav.setViewName("/studentInfo");
+		return mav;
+	}
+	
+	
+
+	
+	
+	
+	
+ 
+}

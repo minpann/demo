@@ -1,0 +1,28 @@
+package com.travelsky.test;
+
+import java.util.List;
+
+
+
+
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+import com.travelsky.dao.StudentDao;
+import com.travelsky.entity.Student;
+
+public class Test {
+	public static void main(String[] args){
+	
+		ApplicationContext ac = new ClassPathXmlApplicationContext(new String[]{"applicationContext.xml"}); 
+		StudentDao dao = (StudentDao)
+			ac.getBean("studentDao");
+//		dao.delete(3);
+		List<Student> list = dao.findAll();
+		for(Student e : list){
+			System.out.println(e.getId()+" "+e.getName());
+		}
+	} 
+	
+
+}

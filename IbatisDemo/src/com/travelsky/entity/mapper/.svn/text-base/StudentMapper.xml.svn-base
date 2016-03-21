@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
+ "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="com.travelsky.dao.StudentDao">
+		<insert id="save" 
+		parameterType="com.travelsky.entity.Student">
+		insert into STUDENT (NAME,COURSE,SCORE)
+		values (#{name},#{course},#{score},)
+	</insert>
+	
+	<update id="update"
+		parameterType="com.travelsky.entity.Student">
+		update STUDENT 
+		set NAME=#{name},COURSE=#{course},
+			SCORE=#{score}
+		where ID=#{id}
+	</update>
+	
+	<!-- 当parameterType指定一个值时，#{名字}可以任意指定 -->
+	<delete id="delete" 
+		parameterType="java.lang.Integer">
+		delete from STUDENT where ID=#{id}
+	</delete>
+	
+	<!-- 将查询结果自动封装成Emp，
+	结果集字段名和Emp属性名一致 -->
+	<select id="findById" 
+		parameterType="java.lang.Integer"
+		resultType="com.travelsky.entity.Student">
+		select * from STUDENT where ID=#{id}
+	</select>
+	<!-- 将一行结果转成一个Emp对象 -->
+	<select id="findAll" 
+		resultType="com.travelsky.entity.Student">
+		select * from STUDENT
+	</select>
+</mapper>
